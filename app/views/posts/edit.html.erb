@@ -33,6 +33,7 @@
 
   <label for="subposts">Pick Subs</label>
   <br>
+
   <% Sub.all.each do |sub| %>
     <input id="subpost_title"
            type="checkbox"
@@ -42,7 +43,7 @@
     <label for="sub_post_title"><%= sub.title %></label>
     <br>
   <% end %>
-
+    <input type="hidden" name="post[post_subs][]" value="[]">
   <button>Submit</button>
 
 </form>
