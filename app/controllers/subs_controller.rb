@@ -1,4 +1,6 @@
 class SubsController < ApplicationController
+  before_action :require_user
+  before_action :require_moderator, only: :destroy
 
   def index
     @subs = Sub.all
@@ -45,15 +47,8 @@ class SubsController < ApplicationController
 
   def destroy
     @sub = Sub.find(params[:id])
-
-    if current_user.id != @sub.moderator_id
-      redirect_to user_url(current_user)
-      flash[:errors] = ["Do not moderate sub"]
-    else
-      @sub.destroy
-      redirect_to user_url(current_user)
-    end
-
+    @sub.destroy
+    redirect_to user_url(current_user)
   end
 
 
@@ -61,4 +56,5 @@ class SubsController < ApplicationController
     def sub_params
       params.require(:sub).permit(:title, :description, :moderator_id)
     end
+
 end

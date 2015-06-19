@@ -23,4 +23,17 @@ class ApplicationController < ActionController::Base
     session[:session_token] = nil
   end
 
+  def require_user
+    if current_user.nil?
+      flash[:errors] = ["Please log in."]
+      redirect_to new_session_url
+    end
+  end
+
+  def require_moderator
+    if current_user.id != Sub.find(params[:id]).moderator_id
+      flash[:errors] = ["You can't delete sub"]
+      redirect_to user_url(current_user)
+    end
+  end
 end
