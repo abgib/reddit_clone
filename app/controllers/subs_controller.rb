@@ -1,6 +1,9 @@
 class SubsController < ApplicationController
 
-
+  def index
+    @subs = Sub.all
+    render :index
+  end
 
   def create
     @sub = Sub.new(sub_params)

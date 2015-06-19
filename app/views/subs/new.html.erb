@@ -1,5 +1,6 @@
 <h1>Create a new sub!</h1>
-<%= @sub.moderator.email %>
+
+<h3><%= current_user.email %><h3>
 
 <form action="<%= user_subs_url %>" method="post">
   <input type="hidden"
@@ -13,8 +14,8 @@
          value="<%= @sub.title %>">
   <br>
 
-  <label for="sub_description">Description</label>
+  <label for="sub_description">Description</label><br>
   <textarea name="sub[description]" rows="8" cols="40"><%= @sub.description %></textarea>
-
+  <br>
   <button>Submit</button>
 </form>
