@@ -8,6 +8,13 @@ class User < ActiveRecord::Base
 
   validates :password, length: { minimum: 6, allow_nil: true }
 
+  has_many(
+    :subs,
+    class_name: "Sub",
+    foreign_key: :moderator_id,
+    primary_key: :id
+  )
+
   attr_reader :password
 
   def password=(password)
