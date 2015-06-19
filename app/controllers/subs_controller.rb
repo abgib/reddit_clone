@@ -1,5 +1,7 @@
 class SubsController < ApplicationController
 
+
+
   def create
     @sub = Sub.new(sub_params)
     @sub.moderator_id = current_user.id
@@ -38,7 +40,18 @@ class SubsController < ApplicationController
 
   end
 
-  
+  def destroy
+    @sub = Sub.find(params[:id])
+
+    if current_user.id != @sub.moderator_id
+      redirect_to user_url(current_user)
+      flash[:errors] = ["Do not moderate sub"]
+    else
+      @sub.destroy
+      redirect_to user_url(current_user)
+    end
+
+  end
 
 
   private
