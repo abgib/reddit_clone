@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :require_user
-
+  before_action :require_author, only: [:edit, :update]
   def new
     @post = Post.new
     render :new
@@ -20,6 +20,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+    @post = Post.find(params[:id])
+    render :show
+  end
+
   def edit
     @post = Post.find(params[:id])
     render :edit
@@ -34,7 +39,7 @@ class PostsController < ApplicationController
       render :edit
     end
   end
-  
+
 private
   def post_params
     params.require(:post).permit(

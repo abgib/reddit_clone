@@ -10,3 +10,10 @@
   <input type="hidden" name="_method" value="delete">
   <button>Delete</button>
 </form>
+
+
+<% @sub.posts.all.each do |post| %>
+  <a href="<%= post_url(post) %>" ><%= post.title %></a>
+  <a>Authored By:</a>
+  <a href=" <%= user_url(post.author) %> "><%= post.author.email %></a>
+<% end %>

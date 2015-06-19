@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     if !current_user.nil?
       current_user.reset_session_token!
     end
-    
+
     session[:session_token] = nil
   end
 
@@ -36,6 +36,13 @@ class ApplicationController < ActionController::Base
   def require_moderator
     if current_user.id != Sub.find(params[:id]).moderator_id
       flash[:errors] = ["You can't delete sub"]
+      redirect_to user_url(current_user)
+    end
+  end
+
+  def require_author
+    if current_user.id != Post.find(params[:id]).author.id
+      flash[:errors] = ["You can't write a post for someone else!"]
       redirect_to user_url(current_user)
     end
   end
