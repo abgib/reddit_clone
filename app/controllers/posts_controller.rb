@@ -10,7 +10,7 @@ class PostsController < ApplicationController
 
     @post = Post.new(post_params)
     @post.author_id = current_user.id
-    @post.sub_id = params[:sub_id]
+    @post.sub_ids = params[:post][:post_subs]
 
     if @post.save
       redirect_to post_url(@post)
@@ -47,7 +47,8 @@ private
             :author_id,
             :sub_id,
             :url,
-            :content
+            :content,
+            :post_subs
             )
   end
 

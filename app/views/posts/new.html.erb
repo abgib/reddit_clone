@@ -30,6 +30,14 @@
              cols="40"><%= @post.content %></textarea>
              <br>
 
+  <label for="subposts">Pick Subs</label>
+  <br>
+  <% Sub.all.each do |sub| %>
+    <input id="subpost_title" type="checkbox" name="post[post_subs][]" value=<%= sub.id.to_i %>>
+    <label for="sub_post_title"><%= sub.title %></label>
+    <br>
+  <% end %>
+
   <button>Submit</button>
 
 </form>

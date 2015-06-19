@@ -1,6 +1,6 @@
 <h1>Edit <%= @post.title %></h1>
 
-<h2><%= @post.author.email %></h2>
+<h2><%= current_user.email %></h2>
 
 <form action="<%= post_url(@post) %>" method="post">
   <input type="hidden" name="_method" value="patch">
@@ -30,6 +30,18 @@
              rows="8"
              cols="40"><%= @post.content %></textarea>
              <br>
+
+  <label for="subposts">Pick Subs</label>
+  <br>
+  <% Sub.all.each do |sub| %>
+    <input id="subpost_title"
+           type="checkbox"
+           name="post[post_subs][]"
+           value=<%= sub.id.to_i %>
+           <%= "checked" if @post.sub_ids.include?(sub.id) %>>
+    <label for="sub_post_title"><%= sub.title %></label>
+    <br>
+  <% end %>
 
   <button>Submit</button>
 

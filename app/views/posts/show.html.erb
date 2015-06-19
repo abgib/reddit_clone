@@ -8,7 +8,7 @@ Content: <%= @post.content %>
 
 URL: <a href="<%= @post.url %>"><%= @post.url %></a>
 
-<form action="<%= post_url(@post) %>" method="post">
+<form action="<%= edit_post_url %>" method="get">
   <input type="hidden"
          name="authenticity_token"
          value="<%= form_authenticity_token %>">
