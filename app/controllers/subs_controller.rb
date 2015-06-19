@@ -20,6 +20,24 @@ class SubsController < ApplicationController
     @sub = Sub.find(params[:id])
     render :show
   end
+
+  def edit
+    @sub = Sub.find(params[:id])
+    render :edit
+  end
+
+  def update
+    @sub = Sub.find(params[:id])
+
+    if @sub.update(sub_params)
+      redirect_to sub_url(@sub)
+    else
+      flash[:errors] = @sub.errors.full_messages
+      render :edit
+    end
+
+  end
+
   
 
 

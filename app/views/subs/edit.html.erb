@@ -1,7 +1,12 @@
-<h1>Create a new sub!</h1>
-<%= @sub.moderator.email %>
+<h1>Edit sub!</h1>
 
-<form action="<%= user_subs_url %>" method="post">
+<h2><%= @sub.moderator.email %></h2>
+
+
+
+<form action="<%= sub_url(@sub) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+
   <input type="hidden"
          name="authenticity_token"
          value="<%= form_authenticity_token %>">
@@ -12,8 +17,11 @@
          name="sub[title]"
          value="<%= @sub.title %>">
   <br>
+  <br>
+
 
   <label for="sub_description">Description</label>
+  <br>
   <textarea name="sub[description]" rows="8" cols="40"><%= @sub.description %></textarea>
 
   <button>Submit</button>
