@@ -1,0 +1,36 @@
+<h1>Edit <%= @post.title %></h1>
+
+<h2><%= @post.author.email %></h2>
+
+<form action="<%= post_url(@post) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+         <br>
+
+  <label for="post_title">Title</label>
+  <input id="post_title"
+         type="text"
+         name="post[title]"
+         value="<%= @post.title %>">
+         <br>
+
+
+  <label for="post_url">URL</label>
+  <input id="post_url"
+         type="text"
+         name="post[url]"
+         value="<%= @post.url %>">
+         <br>
+
+  <label for="post_content">Content</label><br>
+  <textarea id="post_content"
+             name="post[content]"
+             rows="8"
+             cols="40"><%= @post.content %></textarea>
+             <br>
+
+  <button>Submit</button>
+
+</form>
