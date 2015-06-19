@@ -1,0 +1,35 @@
+<h1>Create a new post</h1>
+
+<h2><%= current_user.email %></h2>
+
+<form action="<%= sub_posts_url %>" method="post">
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+         <br>
+
+  <label for="post_title">Title</label>
+  <input id="post_title"
+         type="text"
+         name="post[title]"
+         value="<%= @post.title %>">
+         <br>
+
+
+  <label for="post_url">URL</label>
+  <input id="post_url"
+         type="text"
+         name="post[url]"
+         value="<%= @post.url %>">
+         <br>
+
+  <label for="post_content">Content</label><br>
+  <textarea id="post_content"
+             name="post[content]"
+             rows="8"
+             cols="40"><%= @post.content %></textarea>
+             <br>
+
+  <button>Submit</button>
+
+</form>
